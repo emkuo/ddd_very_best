@@ -3,7 +3,7 @@ class FavoritedDishesController < ApplicationController
 
   # GET /favorited_dishes
   def index
-    @favorited_dishes = FavoritedDish.all
+    @favorited_dishes = FavoritedDish.page(params[:page]).per(10)
   end
 
   # GET /favorited_dishes/1
