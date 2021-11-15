@@ -1,6 +1,9 @@
 class Bookmark < ApplicationRecord
   # Direct associations
 
+  belongs_to :venues,
+             :class_name => "Venue"
+
   belongs_to :dish,
              :class_name => "FavoritedDish"
 
