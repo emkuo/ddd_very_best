@@ -8,6 +8,9 @@ class BookmarkResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :dish,
+             resource: FavoritedDishResource
+
   belongs_to :user
 
   # Indirect associations
