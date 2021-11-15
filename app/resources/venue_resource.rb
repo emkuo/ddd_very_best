@@ -8,6 +8,9 @@ class VenueResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :bookmarks,
+             foreign_key: :venues_id
+
   # Indirect associations
 
 end
