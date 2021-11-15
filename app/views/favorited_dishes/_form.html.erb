@@ -1,0 +1,109 @@
+<% was_validated = favorited_dish.errors.any? %>
+
+<%= form_with(model: favorited_dish, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for name start -->
+  <div class="form-group">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = favorited_dish.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+    <!-- Input for name start -->
+    <%= f.text_area :name, class: name_class, placeholder: "Enter name" %>
+    <!-- Input for name end -->
+    <% if name_was_invalid %>
+      <% favorited_dish.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for name end -->
+  <!-- Label and input for cuisine start -->
+  <div class="form-group">
+    <% cuisine_class = "form-control" %>
+    <% cuisine_was_invalid = favorited_dish.errors.include?(:cuisine) %>
+
+    <% if was_validated %>
+      <% if cuisine_was_invalid %>
+        <% cuisine_class << " is-invalid" %>
+      <% else %>
+        <% cuisine_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :cuisine %>
+    <!-- Input for cuisine start -->
+    <%= f.text_area :cuisine, class: cuisine_class, placeholder: "Enter cuisine" %>
+    <!-- Input for cuisine end -->
+    <% if cuisine_was_invalid %>
+      <% favorited_dish.errors.full_messages_for(:cuisine).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for cuisine end -->
+  <!-- Label and input for venues_id start -->
+  <div class="form-group">
+    <% venue_class = "form-control" %>
+    <% venue_was_invalid = favorited_dish.errors.include?(:venue) %>
+
+    <% if was_validated %>
+      <% if venue_was_invalid %>
+        <% venue_class << " is-invalid" %>
+      <% else %>
+        <% venue_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :venues_id %>
+    <!-- Input for venues_id start -->
+    <%= f.number_field :venues_id, class: venue_class, placeholder: "Enter venue" %>
+    <!-- Input for venues_id end -->
+    <% if venue_was_invalid %>
+      <% favorited_dish.errors.full_messages_for(:venue).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for venues_id end -->
+  <!-- Label and input for user_id start -->
+  <div class="form-group">
+    <% user_class = "form-control" %>
+    <% user_was_invalid = favorited_dish.errors.include?(:user) %>
+
+    <% if was_validated %>
+      <% if user_was_invalid %>
+        <% user_class << " is-invalid" %>
+      <% else %>
+        <% user_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :user_id %>
+    <!-- Input for user_id start -->
+    <%= f.number_field :user_id, class: user_class, placeholder: "Enter user" %>
+    <!-- Input for user_id end -->
+    <% if user_was_invalid %>
+      <% favorited_dish.errors.full_messages_for(:user).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for user_id end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
