@@ -68,7 +68,7 @@
 
     <%= f.label :venues_id %>
     <!-- Input for venues_id start -->
-    <%= f.number_field :venues_id, class: venue_class, placeholder: "Enter venue" %>
+    <%= f.collection_select :venues_id, Venue.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for venues_id end -->
     <% if venue_was_invalid %>
       <% bookmark.errors.full_messages_for(:venue).each do |message| %>
