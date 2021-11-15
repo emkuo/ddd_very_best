@@ -8,6 +8,7 @@ class FavoritedDishesController < ApplicationController
 
   # GET /favorited_dishes/1
   def show
+    @bookmark = Bookmark.new
   end
 
   # GET /favorited_dishes/new
