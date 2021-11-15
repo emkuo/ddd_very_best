@@ -13,6 +13,9 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :dishes,
+               resource: FavoritedDishResource
+
   many_to_many :venues
 
 end
