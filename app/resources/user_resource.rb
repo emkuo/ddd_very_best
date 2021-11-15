@@ -9,7 +9,7 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :bookmarks
+  has_many :bookmarks
 
   # Indirect associations
 
@@ -17,5 +17,4 @@ class UserResource < ApplicationResource
                resource: FavoritedDishResource
 
   many_to_many :venues
-
 end

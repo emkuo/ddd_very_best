@@ -1,10 +1,11 @@
 class FavoritedDishesController < ApplicationController
-  before_action :set_favorited_dish, only: [:show, :edit, :update, :destroy]
+  before_action :set_favorited_dish, only: %i[show edit update destroy]
 
   # GET /favorited_dishes
   def index
     @q = FavoritedDish.ransack(params[:q])
-    @favorited_dishes = @q.result(:distinct => true).includes(:bookmarks, :users).page(params[:page]).per(10)
+    @favorited_dishes = @q.result(distinct: true).includes(:bookmarks,
+                                                           :users).page(params[:page]).per(10)
   end
 
   # GET /favorited_dishes/1
@@ -18,15 +19,15 @@ class FavoritedDishesController < ApplicationController
   end
 
   # GET /favorited_dishes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /favorited_dishes
   def create
     @favorited_dish = FavoritedDish.new(favorited_dish_params)
 
     if @favorited_dish.save
-      redirect_to @favorited_dish, notice: 'Favorited dish was successfully created.'
+      redirect_to @favorited_dish,
+                  notice: "Favorited dish was successfully created."
     else
       render :new
     end
@@ -35,7 +36,8 @@ class FavoritedDishesController < ApplicationController
   # PATCH/PUT /favorited_dishes/1
   def update
     if @favorited_dish.update(favorited_dish_params)
-      redirect_to @favorited_dish, notice: 'Favorited dish was successfully updated.'
+      redirect_to @favorited_dish,
+                  notice: "Favorited dish was successfully updated."
     else
       render :edit
     end
@@ -44,17 +46,20 @@ class FavoritedDishesController < ApplicationController
   # DELETE /favorited_dishes/1
   def destroy
     @favorited_dish.destroy
-    redirect_to favorited_dishes_url, notice: 'Favorited dish was successfully destroyed.'
+    redirect_to favorited_dishes_url,
+                notice: "Favorited dish was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favorited_dish
-      @favorited_dish = FavoritedDish.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def favorited_dish_params
-      params.require(:favorited_dish).permit(:name, :cuisine, :venues_id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_favorited_dish
+    @favorited_dish = FavoritedDish.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def favorited_dish_params
+    params.require(:favorited_dish).permit(:name, :cuisine, :venues_id,
+                                           :user_id)
+  end
 end

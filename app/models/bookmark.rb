@@ -2,10 +2,10 @@ class Bookmark < ApplicationRecord
   # Direct associations
 
   belongs_to :venues,
-             :class_name => "Venue"
+             class_name: "Venue"
 
   belongs_to :dish,
-             :class_name => "FavoritedDish"
+             class_name: "FavoritedDish"
 
   belongs_to :user
 
@@ -18,5 +18,4 @@ class Bookmark < ApplicationRecord
   def to_s
     user.to_s
   end
-
 end
